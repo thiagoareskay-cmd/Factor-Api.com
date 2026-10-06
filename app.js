@@ -1,12 +1,11 @@
 const PRODUCTS = [
-  { id:'miel-250', name:'Miel natural', size:'250 ml', category:'Miel', price:18.90, stock:14, image:'https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=1000&q=85', description:'Miel de abeja 100% natural, filtrada y envasada con cuidado.' },
-  { id:'miel-500', name:'Miel natural', size:'500 ml', category:'Miel', price:32.90, stock:9, image:'https://images.unsplash.com/photo-1473973266408-ed4e27abdd47?auto=format&fit=crop&w=1000&q=85', description:'Formato familiar para disfrutar miel natural en más ocasiones.' },
-  { id:'miel-1000', name:'Miel natural', size:'1 L', category:'Miel', price:58.90, stock:6, image:'https://images.unsplash.com/photo-1562016600-ece13e8ba570?auto=format&fit=crop&w=1000&q=85', description:'Presentación grande para hogares, cafeterías y amantes de la miel.' },
-  { id:'polen-100', name:'Polen de abeja', size:'100 g', category:'Polen', price:24.90, stock:11, image:'https://images.unsplash.com/photo-1601039641847-7857b994d704?auto=format&fit=crop&w=1000&q=85', description:'Polen recolectado y seleccionado para conservar su textura y aroma.' },
-  { id:'polen-250', name:'Polen de abeja', size:'250 g', category:'Polen', price:44.90, stock:5, image:'https://images.unsplash.com/photo-1599909533601-89e650d8f6f5?auto=format&fit=crop&w=1000&q=85', description:'Formato mayor para consumo frecuente.' },
-  { id:'vela-lavanda', name:'Vela de cera natural', size:'Lavanda · 100 g', category:'Velas', price:16.90, stock:13, image:'https://images.unsplash.com/photo-1602874801006-e26f5a9bd0d0?auto=format&fit=crop&w=1000&q=85', description:'Vela artesanal de cera natural con aroma suave a lavanda.' },
-  { id:'vela-vainilla', name:'Vela de cera natural', size:'Vainilla · 100 g', category:'Velas', price:17.90, stock:7, image:'https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=1000&q=85', description:'Aroma cálido y dulce para crear un ambiente acogedor.' },
-  { id:'propolio-30', name:'Propóleo', size:'30 ml', category:'Propóleo', price:21.90, stock:8, image:'https://images.unsplash.com/photo-1598373182133-52452f7691ef?auto=format&fit=crop&w=1000&q=85', description:'Extracto de propóleo en formato práctico para uso cotidiano.' }
+  { id:'miel-250', name:'Miel natural', size:'250 ml', category:'Miel', price:18.90, stock:14, image:'assets/honey.jpg', description:'Miel de abeja 100% natural, filtrada y envasada con cuidado.' },
+  { id:'miel-500', name:'Miel natural', size:'500 ml', category:'Miel', price:32.90, stock:9, image:'assets/honey.jpg', description:'Formato familiar para disfrutar miel natural en más ocasiones.' },
+  { id:'polen-100', name:'Polen de abeja', size:'100 g', category:'Polen', price:24.90, stock:11, image:'assets/pollen.jpg', description:'Polen recolectado y seleccionado para conservar su textura y aroma.' },
+  { id:'polen-250', name:'Polen de abeja', size:'250 g', category:'Polen', price:44.90, stock:5, image:'assets/pollen.jpg', description:'Formato mayor para consumo frecuente.' },
+  { id:'vela-lavanda', name:'Vela de cera natural', size:'Lavanda · 100 g', category:'Velas', price:16.90, stock:13, image:'assets/candles.jpg', description:'Vela artesanal de cera natural con aroma suave a lavanda.' },
+  { id:'vela-vainilla', name:'Vela de cera natural', size:'Vainilla · 100 g', category:'Velas', price:17.90, stock:7, image:'assets/candles.jpg', description:'Aroma cálido y dulce para crear un ambiente acogedor.' },
+  { id:'propolio-30', name:'Propóleo', size:'30 ml', category:'Propóleo', price:21.90, stock:8, image:'assets/propolis.jpg', description:'Extracto de propóleo en formato práctico para uso cotidiano.' }
 ];
 
 const CART_KEY = 'factorApiCart';
@@ -43,11 +42,10 @@ function addToCart(id, qty = 1) {
 function animateAdd() {
   const cart = document.querySelector('.cart-btn');
   if (!cart) return;
-  cart.animate([
-    { transform:'scale(1)' },
-    { transform:'scale(1.16) rotate(-4deg)' },
-    { transform:'scale(1) rotate(0deg)' }
-  ], {duration:500, easing:'cubic-bezier(.2,.8,.2,1)'});
+  cart.classList.remove('cart-added');
+  void cart.offsetWidth;
+  cart.classList.add('cart-added');
+  setTimeout(() => cart.classList.remove('cart-added'), 1000);
 }
 
 function removeFromCart(id) {
