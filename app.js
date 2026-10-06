@@ -32,8 +32,8 @@ function addToCart(id, qty = 1) {
   if (!p) return;
   const cart = getCart();
   const found = cart.find(i => i.id === id);
-  if (found) found.qty = Math.min(found.qty + qty, p.stock);
-  else cart.push({ id, qty: Math.min(qty, p.stock) });
+  if (found) found.qty += qty;
+  else cart.push({ id, qty });
   saveCart(cart); cartCount();
   toast('¡Producto agregado!', `${p.name} · ${p.size} ya está en tu carrito.`);
   animateAdd();
@@ -60,7 +60,6 @@ function changeQty(id, delta) {
   if (!item) return;
   item.qty += delta;
   if (item.qty <= 0) return removeFromCart(id);
-  item.qty = Math.min(item.qty, p.stock);
   saveCart(cart); renderCart(); cartCount();
 }
 
@@ -100,7 +99,7 @@ function completeOrder() {
   if (!cart.length) return;
   const text = cart.map(i => { const p = productById(i.id); return `• ${p.name} ${p.size} x${i.qty} = ${money(p.price*i.qty)}`; }).join('%0A');
   const total = cart.reduce((s,i) => s + productById(i.id).price*i.qty,0);
-  const phone = '51999999999'; // CAMBIA ESTE NÚMERO POR TU WHATSAPP
+  const phone = '51941983088'; // REEMPLAZA POR EL WHATSAPP REAL DEL NEGOCIO
   const url = `https://wa.me/${phone}?text=Hola%20FACTOR%20API,%20quiero%20hacer%20este%20pedido:%0A${text}%0A%0ATotal%20estimado:%20${encodeURIComponent(money(total))}`;
   localStorage.removeItem(CART_KEY); cartCount();
   const overlay = document.querySelector('#celebrate');
@@ -118,7 +117,7 @@ function productCard(p) {
     <a class="product-image" href="producto.html?id=${p.id}"><img src="${p.image}" alt="${p.name} ${p.size}"><span class="tag">${p.category}</span></a>
     <div class="product-body">
       <h3>${p.name}</h3><p>${p.size}</p>
-      <div class="stock ${p.stock <= 5 ? 'low':'ok'}">● ${p.stock <= 5 ? 'Últimas unidades' : 'En stock'} · ${p.stock}</div>
+      <div class="stock ok">● Disponible para pedido</div>
       <div class="price-row"><span class="price">${money(p.price)}</span><button class="add-btn" onclick="addToCart('${p.id}')">＋</button></div>
     </div>
   </article>`;
@@ -150,14 +149,14 @@ function setupProduct() {
   <section class="detail-panel glass"><span class="tag" style="position:static;display:inline-block">${p.category}</span>
     <h1>${p.name}</h1><p style="color:var(--muted)">${p.description}</p>
     <div class="detail-price">${money(p.price)}</div>
-    <div class="stock ${p.stock <= 5 ? 'low':'ok'}">● ${p.stock <= 5 ? 'Últimas unidades' : 'En stock'} · ${p.stock} disponibles</div>
+    <div class="stock ok">● Disponible para pedido · confirmar por WhatsApp</div>
     <h4>Presentación</h4><div class="options"><button class="option active">${selectedSize}</button></div>
     <div class="qty-row"><div class="qty"><button id="minus">−</button><strong id="qty">1</strong><button id="plus">+</button></div><button id="add-detail" class="primary-btn" style="flex:1">Agregar al carrito</button></div>
     <div class="info-grid" style="grid-template-columns:1fr 1fr"><div class="info-card" style="padding:15px"><h4>100% natural</h4><p>Sin aditivos innecesarios.</p></div><div class="info-card" style="padding:15px"><h4>Origen local</h4><p>Producción con identidad.</p></div></div>
   </section>`;
   const qtyEl = root.querySelector('#qty');
   root.querySelector('#minus').onclick = () => { qty = Math.max(1, qty-1); qtyEl.textContent = qty; };
-  root.querySelector('#plus').onclick = () => { qty = Math.min(p.stock, qty+1); qtyEl.textContent = qty; };
+  root.querySelector('#plus').onclick = () => { qty += 1; qtyEl.textContent = qty; };
   root.querySelector('#add-detail').onclick = () => addToCart(p.id, qty);
 }
 

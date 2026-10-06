@@ -20,7 +20,7 @@ Sitio web estático listo para probar en GitHub Pages.
 
 ## Importante
 
-El número de WhatsApp está puesto como ejemplo: `51999999999`.
+El número de WhatsApp está puesto como ejemplo: `51941983088`.
 Busca ese valor en `app.js`, `index.html` y `contacto.html` y reemplázalo por el número real, sin espacios ni `+`.
 
 Los precios, stock, correos y textos son demostrativos y deben reemplazarse por los datos reales del negocio.
@@ -39,3 +39,10 @@ Puedes abrir `index.html` directamente en el navegador. Para una experiencia má
 6. Guarda y espera a que GitHub genere tu enlace.
 
 No necesita Node.js, npm ni base de datos para esta demo.
+
+
+### Disponibilidad
+La tienda muestra `Disponible para pedido` en lugar de cantidades exactas de stock, para evitar que tengas que actualizar existencias constantemente. La disponibilidad final se confirma por WhatsApp antes de cerrar el pedido.
+
+### WhatsApp
+En `app.js`, reemplaza `51941983088` por el número real del negocio, usando código de país y sin `+`, espacios ni guiones.
