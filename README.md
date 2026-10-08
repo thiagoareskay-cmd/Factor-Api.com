@@ -20,10 +20,9 @@ Sitio web estático listo para probar en GitHub Pages.
 
 ## Importante
 
-El número de WhatsApp está puesto como ejemplo: `51941983088`.
-Busca ese valor en `app.js`, `index.html` y `contacto.html` y reemplázalo por el número real, sin espacios ni `+`.
+El WhatsApp de pedidos y contacto está configurado como `51941983088` ( +51 941 983 088 ). Si cambia, actualiza ese número en `app.js`.
 
-Los precios, stock, correos y textos son demostrativos y deben reemplazarse por los datos reales del negocio.
+Los precios y existencias de otros productos son configurables en `app.js`. El producto Mini Api cuesta S/ 20.00. El formulario de contacto abre WhatsApp con los datos rellenados; la persona debe pulsar Enviar en WhatsApp. Un sitio estático de GitHub Pages no puede enviar correos por sí solo sin un servicio externo o backend.
 
 ## Probar localmente
 
@@ -32,7 +31,7 @@ Puedes abrir `index.html` directamente en el navegador. Para una experiencia má
 ## Publicar en GitHub Pages
 
 1. Crea un repositorio nuevo en GitHub.
-2. Sube todos los archivos y la carpeta `assets`.
+2. Sube al repositorio los archivos de esta carpeta (por ejemplo `index.html`, `tienda.html`, `app.js`, `styles.css`) y la carpeta `assets`, directamente en la raíz del repositorio. No subas la carpeta contenedora como un nivel adicional.
 3. Ve a Settings → Pages.
 4. En “Build and deployment” selecciona “Deploy from a branch”.
 5. Selecciona la rama `main` y la carpeta `/ (root)`.
