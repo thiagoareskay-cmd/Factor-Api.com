@@ -45,3 +45,13 @@ La tienda muestra `Disponible para pedido` en lugar de cantidades exactas de sto
 
 ### WhatsApp
 En `app.js`, reemplaza `51941983088` por el número real del negocio, usando código de país y sin `+`, espacios ni guiones.
+
+
+## Reparación de imágenes y logo (GitHub Pages)
+
+- Las referencias a imágenes usan rutas relativas explícitas (`./assets/...`).
+- La carpeta `assets` debe quedar al mismo nivel que `index.html`, `tienda.html`, `app.js` y `styles.css`.
+- En GitHub, abre el repositorio `Factor-Api.com` y sube **el contenido** del ZIP a la raíz del repositorio, incluida la carpeta `assets` completa. No subas solo los archivos HTML.
+- Después de confirmar los cambios, espera a que termine el despliegue de Pages y recarga la web con `Cmd + Shift + R` en Mac.
+
+Las imágenes están incluidas en este ZIP. Si el sitio publicado sigue sin mostrarlas, verifica en GitHub que exista `assets/logo.png` y que al abrirlo desde el repositorio se vea la imagen.
